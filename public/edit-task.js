@@ -8,6 +8,35 @@ const params = window.location.search
 const id = new URLSearchParams(params).get('id')
 let tempName
 
+// dark mode
+const toggleButton = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+
+// Apply saved theme on load
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+// Update button text/icon based on theme
+function updateButton() {
+  if (currentTheme === 'dark') {
+    toggleButton.textContent = '☀️';
+  } else {
+    toggleButton.textContent = '🌙';
+  }
+}
+updateButton();
+
+// Toggle theme on button click
+toggleButton.addEventListener('click', () => {
+  let theme = document.documentElement.getAttribute('data-theme');
+  let newTheme = theme === 'dark' ? 'light' : 'dark';
+
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+
+  // Update button icon
+  toggleButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+});   
+// end 
 const showTask = async () => {
   try {
     const {

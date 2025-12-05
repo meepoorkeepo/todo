@@ -3,6 +3,37 @@ const loadingDOM = document.querySelector('.loading-text')
 const formDOM = document.querySelector('.task-form')
 const taskInputDOM = document.querySelector('.task-input')
 const formAlertDOM = document.querySelector('.form-alert')
+
+// darkmode
+const toggleButton = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme') || 'light';
+
+// Apply saved theme on load
+document.documentElement.setAttribute('data-theme', currentTheme);
+
+// Update button text/icon based on theme
+function updateButton() {
+  if (currentTheme === 'dark') {
+    toggleButton.textContent = '☀️';
+  } else {
+    toggleButton.textContent = '🌙';
+  }
+}
+updateButton();
+
+// Toggle theme on button click
+toggleButton.addEventListener('click', (e) => {
+  e.preventDefault()
+  let theme = document.documentElement.getAttribute('data-theme');
+  let newTheme = theme === 'dark' ? 'light' : 'dark';
+
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+
+  // Update button icon
+  toggleButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+});   
+
 // Load tasks from /api/tasks
 const showTasks = async () => {
   loadingDOM.style.visibility = 'visible'

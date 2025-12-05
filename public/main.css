@@ -5,6 +5,9 @@
   box-sizing: border-box;
 }
 :root {
+
+  --input-text-color: #000; /* Light mode */
+  --icon-color: #000; /* Icônes foncées en mode clair */
   /* COLORS  */
   /* primary */
   --primary-0: #f0efff;
@@ -49,8 +52,9 @@
   --bodyFont: 'Montserrat', sans-serif;
   --smallText: 0.7em;
   /* rest */
-  --backgroundColor: var(--grey-50);
-  --textColor: var(--grey-1000);
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --button-bg: #f0f0f0;
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
@@ -66,16 +70,58 @@
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* Dark theme */
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --button-bg: #333333;
+   --input-text-color: #fff; /* Dark mode */
+    --icon-color: #fff; /* Icônes claires en mode sombre */
+}
+
+input, textarea {
+  color: var(--input-text-color);
+}
+
+/* Appliquez la couleur aux icônes */
+.icon, .icon * {
+  fill: var(--icon-color);
+  color: var(--icon-color);
+}
+
 html {
   font-size: 112.5%;
 }
 
+
+
 body {
-  background: var(--backgroundColor);
-  color: var(--textColor);
-  font-family: var(--bodyFont);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-weight: 400;
   line-height: 1.75;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  z-index: 1000;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover {
+  transform: rotate(20deg);
 }
 
 p {
@@ -174,7 +220,7 @@ button.block {
 *************/
 form {
   width: 100%;
-  background: var(--white);
+  background: var(--bg);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
@@ -191,7 +237,7 @@ textarea {
   width: 100%;
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
-  background: var(--grey-50);
+  background: var(--bg);
   border-color: transparent;
   border: 1px solid var(--grey-300);
 }
@@ -320,6 +366,8 @@ form > :last-child {
   border: 3px solid #ccc;
   border-top-color: var(--clr-primary-5);
   animation: spinner 0.6s linear infinite;
+
+  
 }
 
 /*************
@@ -342,7 +390,7 @@ form > :last-child {
 }
 .single-task {
   padding: 1rem 2.5rem;
-  background: var(--white);
+  background: var(--bg);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   transition: var(--transition);
