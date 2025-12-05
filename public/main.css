@@ -105,9 +105,9 @@ body {
 }
 
 #theme-toggle {
-  position: absolute;
+  position: fixed;
   top: 20px;
-  right: 40px;
+  right: 20%;
   z-index: 1000;
   background-color: var(--button-bg);
   color: var(--text-color);
