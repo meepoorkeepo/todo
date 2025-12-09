@@ -105,7 +105,7 @@ body {
 }
 
 #theme-toggle {
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 20%;
   z-index: 1000;
